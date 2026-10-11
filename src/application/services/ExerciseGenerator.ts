@@ -33,10 +33,6 @@ const PRONOUNS = Object.values(Pronouns);
 export const ALL_TENSES = Object.values(Tenses);
 export const DEFAULT_TENSES = [Tenses.Present, Tenses.Imparfait, Tenses.Futur];
 
-function pick<T>(items: readonly T[]): T {
-    return items[Math.floor(Math.random() * items.length)];
-}
-
 function shuffle<T>(items: readonly T[]): T[] {
     const copy = [...items];
     for (let i = copy.length - 1; i > 0; i--) {
@@ -62,22 +58,23 @@ export function pickVerbs(): Verb[] {
     ];
 }
 
-// Spreads the rows evenly between the tenses. When they can't be split equally,
-// the leftover rows go to randomly chosen tenses, one extra row each.
-export function distributeTenses(tenses: readonly Tenses[], count: number): Tenses[] {
-    const perTense = Math.floor(count / tenses.length);
-    const extras = shuffle(tenses).slice(0, count % tenses.length);
+// Spreads `count` rows evenly between the values. When they can't be split equally,
+// the leftover rows go to randomly chosen values, one extra row each.
+export function distributeEvenly<T>(values: readonly T[], count: number): T[] {
+    const perValue = Math.floor(count / values.length);
+    const extras = shuffle(values).slice(0, count % values.length);
     return shuffle([
-        ...tenses.flatMap((tense) => Array<Tenses>(perTense).fill(tense)),
+        ...values.flatMap((value) => Array<T>(perValue).fill(value)),
         ...extras,
     ]);
 }
 
 export function generateExercise(tenses: readonly Tenses[] = DEFAULT_TENSES): ExerciseRow[] {
     const verbs = shuffle(pickVerbs());
-    const rowTenses = distributeTenses(tenses, verbs.length);
+    const pronouns = distributeEvenly(PRONOUNS, verbs.length);
+    const rowTenses = distributeEvenly(tenses, verbs.length);
     return verbs.map((verb, i) => {
-        const pronoun = pick(PRONOUNS);
+        const pronoun = pronouns[i];
         const tense = rowTenses[i];
         return {verb, pronoun, tense, form: conjugate(verb, pronoun, tense)};
     });
