@@ -9,6 +9,7 @@ export const Faire: Verb = {
     stems: {
         [Tenses.Imparfait]: "fais",
         [Tenses.Futur]: "fer",
+        [Tenses.PasseSimple]: "fi",
     },
     irregularities: {
         [Tenses.Present]: {

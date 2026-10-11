@@ -8,6 +8,7 @@ export const Boire: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "buv",
+        [Tenses.PasseSimple]: "bu",
     },
     irregularities: {
         [Tenses.Present]: {

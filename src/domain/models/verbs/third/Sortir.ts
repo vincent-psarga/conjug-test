@@ -8,6 +8,7 @@ export const Sortir: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "sort",
+        [Tenses.PasseSimple]: "sorti",
     },
     irregularities: {
         [Tenses.Present]: {

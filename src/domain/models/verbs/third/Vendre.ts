@@ -8,6 +8,7 @@ export const Vendre: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "vend",
+        [Tenses.PasseSimple]: "vendi",
     },
     irregularities: {
         [Tenses.Present]: {

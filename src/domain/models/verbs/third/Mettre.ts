@@ -8,6 +8,7 @@ export const Mettre: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "mett",
+        [Tenses.PasseSimple]: "mi",
     },
     irregularities: {
         [Tenses.Present]: {

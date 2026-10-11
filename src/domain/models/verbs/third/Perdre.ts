@@ -8,6 +8,7 @@ export const Perdre: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "perd",
+        [Tenses.PasseSimple]: "perdi",
     },
     irregularities: {
         [Tenses.Present]: {

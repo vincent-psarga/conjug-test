@@ -8,6 +8,7 @@ export const Rire: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "ri",
+        [Tenses.PasseSimple]: "ri",
     },
     irregularities: {
         [Tenses.Present]: {

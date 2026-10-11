@@ -18,5 +18,13 @@ export const Changer: Verb = {
             [Pronouns.il]: "changeait",
             [Pronouns.ils]: "changeaient",
         },
+        [Tenses.PasseSimple]: {
+            // an "e" must be added before "a" otherwise it sounds like a "hard G"
+            [Pronouns.je]: "changeai",
+            [Pronouns.tu]: "changeas",
+            [Pronouns.il]: "changea",
+            [Pronouns.nous]: "changeâmes",
+            [Pronouns.vous]: "changeâtes",
+        },
     },
 };

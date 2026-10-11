@@ -18,5 +18,13 @@ export const Lancer: Verb = {
             [Pronouns.il]: "lançait",
             [Pronouns.ils]: "lançaient",
         },
+        [Tenses.PasseSimple]: {
+            // "c" becomes "ç" before "a" otherwise it sounds like a "hard C"
+            [Pronouns.je]: "lançai",
+            [Pronouns.tu]: "lanças",
+            [Pronouns.il]: "lança",
+            [Pronouns.nous]: "lançâmes",
+            [Pronouns.vous]: "lançâtes",
+        },
     },
 };

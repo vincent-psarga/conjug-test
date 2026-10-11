@@ -8,6 +8,7 @@ export const Ouvrir: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "ouvr",
+        [Tenses.PasseSimple]: "ouvri",
     },
     irregularities: {
         [Tenses.Present]: {

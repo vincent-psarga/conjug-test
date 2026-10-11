@@ -8,6 +8,7 @@ export const Attendre: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "attend",
+        [Tenses.PasseSimple]: "attendi",
     },
     irregularities: {
         [Tenses.Present]: {

@@ -9,6 +9,7 @@ export const Savoir: Verb = {
     stems: {
         [Tenses.Imparfait]: "sav",
         [Tenses.Futur]: "saur",
+        [Tenses.PasseSimple]: "su",
     },
     irregularities: {
         [Tenses.Present]: {

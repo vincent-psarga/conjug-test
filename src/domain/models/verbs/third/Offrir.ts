@@ -8,6 +8,7 @@ export const Offrir: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "offr",
+        [Tenses.PasseSimple]: "offri",
     },
     irregularities: {
         [Tenses.Present]: {

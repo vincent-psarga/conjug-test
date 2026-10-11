@@ -13,6 +13,7 @@ import {
 import {PresentConjugator} from "./PresentConjugator.ts";
 import {ImparfaitConjugator} from "./ImparfaitConjugator.ts";
 import {FuturConjugator} from "./FuturConjugator.ts";
+import {PasseSimpleConjugator} from "./PasseSimpleConjugator.ts";
 
 export type ExerciseRow = {
     verb: Verb,
@@ -25,10 +26,12 @@ const CONJUGATORS: { [Tense in Tenses]: IConjugator<Tense> } = {
     [Tenses.Present]: new PresentConjugator(),
     [Tenses.Imparfait]: new ImparfaitConjugator(),
     [Tenses.Futur]: new FuturConjugator(),
+    [Tenses.PasseSimple]: new PasseSimpleConjugator(),
 };
 
 const PRONOUNS = Object.values(Pronouns);
 export const ALL_TENSES = Object.values(Tenses);
+export const DEFAULT_TENSES = [Tenses.Present, Tenses.Imparfait, Tenses.Futur];
 
 function pick<T>(items: readonly T[]): T {
     return items[Math.floor(Math.random() * items.length)];
@@ -59,7 +62,7 @@ export function pickVerbs(): Verb[] {
     ];
 }
 
-export function generateExercise(tenses: readonly Tenses[] = ALL_TENSES): ExerciseRow[] {
+export function generateExercise(tenses: readonly Tenses[] = DEFAULT_TENSES): ExerciseRow[] {
     return shuffle(pickVerbs()).map((verb) => {
         const pronoun = pick(PRONOUNS);
         const tense = pick(tenses);

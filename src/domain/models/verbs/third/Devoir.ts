@@ -9,6 +9,7 @@ export const Devoir: Verb = {
     stems: {
         [Tenses.Imparfait]: "dev",
         [Tenses.Futur]: "devr",
+        [Tenses.PasseSimple]: "du",
     },
     irregularities: {
         [Tenses.Present]: {

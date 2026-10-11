@@ -18,5 +18,13 @@ export const Nager: Verb = {
             [Pronouns.il]: "nageait",
             [Pronouns.ils]: "nageaient",
         },
+        [Tenses.PasseSimple]: {
+            // an "e" must be added before "a" otherwise it sounds like a "hard G"
+            [Pronouns.je]: "nageai",
+            [Pronouns.tu]: "nageas",
+            [Pronouns.il]: "nagea",
+            [Pronouns.nous]: "nageâmes",
+            [Pronouns.vous]: "nageâtes",
+        },
     },
 };

@@ -22,10 +22,15 @@ export abstract class StemAndEndingsConjugator<Tense extends Tenses> implements 
         }
 
         const stem = verb.stems?.[this.tense] ?? this.defaultStem(verb);
-        const ending = this.endings(verb)?.[pronoun];
-        if (stem === undefined || ending === undefined) {
+        const form = stem === undefined ? undefined : this.addEnding(verb, stem, pronoun);
+        if (form === undefined) {
             throw new Error(`Unable to conjugate ${verb.infinitive} with ${pronoun} in ${this.tense}`);
         }
-        return stem + ending;
+        return form;
+    }
+
+    protected addEnding(verb: Verb, stem: string, pronoun: Pronouns): string | undefined {
+        const ending = this.endings(verb)?.[pronoun];
+        return ending === undefined ? undefined : stem + ending;
     }
 }

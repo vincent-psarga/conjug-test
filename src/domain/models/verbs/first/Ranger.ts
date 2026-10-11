@@ -18,5 +18,13 @@ export const Ranger: Verb = {
             [Pronouns.il]: "rangeait",
             [Pronouns.ils]: "rangeaient",
         },
+        [Tenses.PasseSimple]: {
+            // an "e" must be added before "a" otherwise it sounds like a "hard G"
+            [Pronouns.je]: "rangeai",
+            [Pronouns.tu]: "rangeas",
+            [Pronouns.il]: "rangea",
+            [Pronouns.nous]: "rangeâmes",
+            [Pronouns.vous]: "rangeâtes",
+        },
     },
 };

@@ -9,6 +9,7 @@ export const Vouloir: Verb = {
     stems: {
         [Tenses.Imparfait]: "voul",
         [Tenses.Futur]: "voudr",
+        [Tenses.PasseSimple]: "voulu",
     },
     irregularities: {
         [Tenses.Present]: {

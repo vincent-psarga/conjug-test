@@ -8,6 +8,7 @@ export const Dormir: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "dorm",
+        [Tenses.PasseSimple]: "dormi",
     },
     irregularities: {
         [Tenses.Present]: {

@@ -9,6 +9,7 @@ export const Voir: Verb = {
     stems: {
         [Tenses.Imparfait]: "voy",
         [Tenses.Futur]: "verr",
+        [Tenses.PasseSimple]: "vi",
     },
     irregularities: {
         [Tenses.Present]: {

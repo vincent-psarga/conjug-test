@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ALL_TENSES, generateExercise } from './application/services/ExerciseGenerator.ts'
+import { DEFAULT_TENSES, generateExercise } from './application/services/ExerciseGenerator.ts'
 import type { Tenses } from './domain/models/Tenses.ts'
 import TenseSelector from './TenseSelector.tsx'
 
@@ -12,7 +12,7 @@ const INSTRUCTIONS: Record<Mode, string> = {
 
 function App() {
   const [mode, setMode] = useState<Mode>('retrouver')
-  const [tenses, setTenses] = useState<Tenses[]>(ALL_TENSES)
+  const [tenses, setTenses] = useState<Tenses[]>(DEFAULT_TENSES)
   const [rows, setRows] = useState(() => generateExercise(tenses))
 
   const switchMode = (next: Mode) => {

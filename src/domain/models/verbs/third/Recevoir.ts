@@ -9,6 +9,7 @@ export const Recevoir: Verb = {
     stems: {
         [Tenses.Imparfait]: "recev",
         [Tenses.Futur]: "recevr",
+        [Tenses.PasseSimple]: "reçu",
     },
     irregularities: {
         [Tenses.Present]: {

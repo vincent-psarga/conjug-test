@@ -8,6 +8,7 @@ export const Partir: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "part",
+        [Tenses.PasseSimple]: "parti",
     },
     irregularities: {
         [Tenses.Present]: {

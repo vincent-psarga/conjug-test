@@ -9,6 +9,7 @@ export const Courir: Verb = {
     stems: {
         [Tenses.Imparfait]: "cour",
         [Tenses.Futur]: "courr",
+        [Tenses.PasseSimple]: "couru",
     },
     irregularities: {
         [Tenses.Present]: {

@@ -8,6 +8,7 @@ export const Croire: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "croy",
+        [Tenses.PasseSimple]: "cru",
     },
     irregularities: {
         [Tenses.Present]: {

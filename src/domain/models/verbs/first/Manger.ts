@@ -18,5 +18,13 @@ export const Manger: Verb = {
             [Pronouns.il]: "mangeait",
             [Pronouns.ils]: "mangeaient",
         },
+        [Tenses.PasseSimple]: {
+            // an "e" must be added before "a" otherwise it sounds like a "hard G"
+            [Pronouns.je]: "mangeai",
+            [Pronouns.tu]: "mangeas",
+            [Pronouns.il]: "mangea",
+            [Pronouns.nous]: "mangeâmes",
+            [Pronouns.vous]: "mangeâtes",
+        },
     },
 };

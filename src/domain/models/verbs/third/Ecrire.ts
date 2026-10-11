@@ -8,6 +8,7 @@ export const Ecrire: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "écriv",
+        [Tenses.PasseSimple]: "écrivi",
     },
     irregularities: {
         [Tenses.Present]: {

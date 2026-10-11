@@ -18,5 +18,13 @@ export const Commencer: Verb = {
             [Pronouns.il]: "commençait",
             [Pronouns.ils]: "commençaient",
         },
+        [Tenses.PasseSimple]: {
+            // "c" becomes "ç" before "a" otherwise it sounds like a "hard C"
+            [Pronouns.je]: "commençai",
+            [Pronouns.tu]: "commenças",
+            [Pronouns.il]: "commença",
+            [Pronouns.nous]: "commençâmes",
+            [Pronouns.vous]: "commençâtes",
+        },
     },
 };

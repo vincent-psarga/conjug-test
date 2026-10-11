@@ -9,6 +9,7 @@ export const Mourir: Verb = {
     stems: {
         [Tenses.Imparfait]: "mour",
         [Tenses.Futur]: "mourr",
+        [Tenses.PasseSimple]: "mouru",
     },
     irregularities: {
         [Tenses.Present]: {

@@ -8,6 +8,7 @@ export const Lire: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "lis",
+        [Tenses.PasseSimple]: "lu",
     },
     irregularities: {
         [Tenses.Present]: {

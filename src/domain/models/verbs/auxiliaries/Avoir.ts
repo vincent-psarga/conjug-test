@@ -9,6 +9,7 @@ export const Avoir: Verb = {
     stems: {
         [Tenses.Imparfait]: "av",
         [Tenses.Futur]: "aur",
+        [Tenses.PasseSimple]: "eu",
     },
     irregularities: {
         [Tenses.Present]: {

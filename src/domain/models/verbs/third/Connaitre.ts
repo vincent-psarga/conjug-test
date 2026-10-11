@@ -8,6 +8,7 @@ export const Connaitre: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "connaiss",
+        [Tenses.PasseSimple]: "connu",
     },
     irregularities: {
         [Tenses.Present]: {

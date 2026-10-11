@@ -9,6 +9,7 @@ export const Venir: Verb = {
     stems: {
         [Tenses.Imparfait]: "ven",
         [Tenses.Futur]: "viendr",
+        [Tenses.PasseSimple]: "vin",
     },
     irregularities: {
         [Tenses.Present]: {

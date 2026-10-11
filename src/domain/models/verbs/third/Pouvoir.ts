@@ -9,6 +9,7 @@ export const Pouvoir: Verb = {
     stems: {
         [Tenses.Imparfait]: "pouv",
         [Tenses.Futur]: "pourr",
+        [Tenses.PasseSimple]: "pu",
     },
     irregularities: {
         [Tenses.Present]: {

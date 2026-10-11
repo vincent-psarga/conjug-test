@@ -9,6 +9,7 @@ export const Etre: Verb = {
     stems: {
         [Tenses.Imparfait]: "ét",
         [Tenses.Futur]: "ser",
+        [Tenses.PasseSimple]: "fu",
     },
     irregularities: {
         [Tenses.Present]: {

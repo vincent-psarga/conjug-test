@@ -18,5 +18,13 @@ export const Placer: Verb = {
             [Pronouns.il]: "plaçait",
             [Pronouns.ils]: "plaçaient",
         },
+        [Tenses.PasseSimple]: {
+            // "c" becomes "ç" before "a" otherwise it sounds like a "hard C"
+            [Pronouns.je]: "plaçai",
+            [Pronouns.tu]: "plaças",
+            [Pronouns.il]: "plaça",
+            [Pronouns.nous]: "plaçâmes",
+            [Pronouns.vous]: "plaçâtes",
+        },
     },
 };

@@ -9,6 +9,7 @@ export const Tenir: Verb = {
     stems: {
         [Tenses.Imparfait]: "ten",
         [Tenses.Futur]: "tiendr",
+        [Tenses.PasseSimple]: "tin",
     },
     irregularities: {
         [Tenses.Present]: {

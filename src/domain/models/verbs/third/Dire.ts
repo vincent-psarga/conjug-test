@@ -8,6 +8,7 @@ export const Dire: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "dis",
+        [Tenses.PasseSimple]: "di",
     },
     irregularities: {
         [Tenses.Present]: {

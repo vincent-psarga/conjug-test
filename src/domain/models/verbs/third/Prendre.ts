@@ -8,6 +8,7 @@ export const Prendre: Verb = {
     group: VerbGroups.third,
     stems: {
         [Tenses.Imparfait]: "pren",
+        [Tenses.PasseSimple]: "pri",
     },
     irregularities: {
         [Tenses.Present]: {

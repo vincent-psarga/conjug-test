@@ -19,5 +19,14 @@ export const Aller: Verb = {
             [Pronouns.vous]: "allez",
             [Pronouns.ils]: "vont",
         },
+        [Tenses.PasseSimple]: {
+            // conjugated like a first group verb
+            [Pronouns.je]: "allai",
+            [Pronouns.tu]: "allas",
+            [Pronouns.il]: "alla",
+            [Pronouns.nous]: "allâmes",
+            [Pronouns.vous]: "allâtes",
+            [Pronouns.ils]: "allèrent",
+        },
     },
 };
