@@ -30,7 +30,13 @@ header p {
 .actions {
   display: flex;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+}
+
+button[aria-pressed='true'] {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
 }
 
 button {
