@@ -1,0 +1,78 @@
+:root {
+  --text: #1a1a1a;
+  --muted: #555;
+  --border: #999;
+  --bg: #fff;
+  font: 16px/1.4 system-ui, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+h1 {
+  margin: 0 0 4px;
+}
+
+header p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+button {
+  font: inherit;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 0 12px;
+  height: 36px;
+  width: 25%;
+}
+
+th {
+  text-align: left;
+  background: #f0f0f0;
+}
+
+td.verb {
+  font-weight: 600;
+}
+
+@media print {
+  .actions {
+    display: none;
+  }
+
+  main {
+    max-width: none;
+    padding: 0;
+  }
+
+  th {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
