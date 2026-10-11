@@ -62,10 +62,23 @@ export function pickVerbs(): Verb[] {
     ];
 }
 
+// Spreads the rows evenly between the tenses. When they can't be split equally,
+// the leftover rows go to randomly chosen tenses, one extra row each.
+export function distributeTenses(tenses: readonly Tenses[], count: number): Tenses[] {
+    const perTense = Math.floor(count / tenses.length);
+    const extras = shuffle(tenses).slice(0, count % tenses.length);
+    return shuffle([
+        ...tenses.flatMap((tense) => Array<Tenses>(perTense).fill(tense)),
+        ...extras,
+    ]);
+}
+
 export function generateExercise(tenses: readonly Tenses[] = DEFAULT_TENSES): ExerciseRow[] {
-    return shuffle(pickVerbs()).map((verb) => {
+    const verbs = shuffle(pickVerbs());
+    const rowTenses = distributeTenses(tenses, verbs.length);
+    return verbs.map((verb, i) => {
         const pronoun = pick(PRONOUNS);
-        const tense = pick(tenses);
+        const tense = rowTenses[i];
         return {verb, pronoun, tense, form: conjugate(verb, pronoun, tense)};
     });
 }
