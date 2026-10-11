@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { generateExercise } from './exercise.ts'
+import { generateExercise } from './application/services/ExerciseGenerator.ts'
 
 type Mode = 'retrouver' | 'conjuguer'
 
