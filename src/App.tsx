@@ -1,73 +1,51 @@
 import { useState } from 'react'
 import { DEFAULT_TENSES, generateExercise } from './application/services/ExerciseGenerator.ts'
 import type { Tenses } from './domain/models/Tenses.ts'
+import ExerciseSheet from './ExerciseSheet.tsx'
+import { EXERCISES, type Mode } from './exercises.ts'
 import TenseSelector from './TenseSelector.tsx'
 
-type Mode = 'retrouver' | 'conjuguer'
+const MODES = Object.keys(EXERCISES) as Mode[]
 
-const INSTRUCTIONS: Record<Mode, string> = {
-  retrouver: 'Retrouve le pronom, l’infinitif et le temps de chaque verbe conjugué.',
-  conjuguer: 'Conjugue chaque verbe avec le pronom et au temps indiqué.',
+// Each exercise gets its own rows so one sheet doesn't give away the other's answers.
+function generateSheets(tenses: Tenses[]) {
+  return {
+    retrouver: generateExercise(tenses),
+    conjuguer: generateExercise(tenses),
+  }
 }
 
 function App() {
   const [mode, setMode] = useState<Mode>('retrouver')
   const [tenses, setTenses] = useState<Tenses[]>(DEFAULT_TENSES)
-  const [rows, setRows] = useState(() => generateExercise(tenses))
-
-  const switchMode = (next: Mode) => {
-    if (next === mode) return
-    setMode(next)
-    setRows(generateExercise(tenses))
-  }
+  const [sheets, setSheets] = useState(() => generateSheets(tenses))
 
   const changeTenses = (next: Tenses[]) => {
     setTenses(next)
-    setRows(generateExercise(next))
+    setSheets(generateSheets(next))
   }
-
-  const showIfConjuguer = (content: string) => (mode === 'conjuguer' ? content : null)
 
   return (
     <main>
-      <header>
+      <header className="screen-only">
         <h1>Conjugaison</h1>
         <div className="actions">
-          <button aria-pressed={mode === 'retrouver'} onClick={() => switchMode('retrouver')}>
-            Exercice 1 : retrouver
-          </button>
-          <button aria-pressed={mode === 'conjuguer'} onClick={() => switchMode('conjuguer')}>
-            Exercice 2 : conjuguer
-          </button>
+          {MODES.map((m) => (
+            <button key={m} aria-pressed={mode === m} onClick={() => setMode(m)}>
+              {EXERCISES[m].title}
+            </button>
+          ))}
         </div>
-        <p>{INSTRUCTIONS[mode]}</p>
         <TenseSelector selected={tenses} onChange={changeTenses} />
         <div className="actions">
-          <button onClick={() => setRows(generateExercise(tenses))}>Nouvelle fiche</button>
+          <button onClick={() => setSheets(generateSheets(tenses))}>Nouvelle fiche</button>
           <button onClick={() => window.print()}>Imprimer</button>
         </div>
       </header>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Pronom</th>
-            <th>Verbe (infinitif)</th>
-            <th>Verbe (conjugué)</th>
-            <th>Temps</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr key={row.verb.infinitive}>
-              <td>{showIfConjuguer(row.pronoun)}</td>
-              <td>{showIfConjuguer(row.verb.infinitive)}</td>
-              <td className="verb">{mode === 'retrouver' ? row.form : null}</td>
-              <td>{showIfConjuguer(row.tense)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {MODES.map((m) => (
+        <ExerciseSheet key={m} mode={m} rows={sheets[m]} tenses={tenses} hidden={m !== mode} />
+      ))}
     </main>
   )
 }

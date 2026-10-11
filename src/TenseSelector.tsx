@@ -7,7 +7,6 @@ type Props = {
   onChange: (tenses: Tenses[]) => void
 }
 
-// Dropdown on screen, plain list of the included tenses on paper.
 function TenseSelector({ selected, onChange }: Props) {
   const dropdown = useRef<HTMLDetailsElement>(null)
 
@@ -41,27 +40,24 @@ function TenseSelector({ selected, onChange }: Props) {
   const summary = selected.join(', ')
 
   return (
-    <>
-      <details ref={dropdown} className="tense-selector screen-only">
-        <summary>Temps : {summary}</summary>
-        <fieldset>
-          <legend>Temps utilisés dans l’exercice</legend>
-          {ALL_TENSES.map((tense) => (
-            <label key={tense}>
-              <input
-                type="checkbox"
-                checked={selected.includes(tense)}
-                // At least one tense is needed to build the exercise.
-                disabled={selected.length === 1 && selected.includes(tense)}
-                onChange={() => toggle(tense)}
-              />
-              {tense}
-            </label>
-          ))}
-        </fieldset>
-      </details>
-      <p className="print-only">Temps : {summary}</p>
-    </>
+    <details ref={dropdown} className="tense-selector">
+      <summary>Temps : {summary}</summary>
+      <fieldset>
+        <legend>Temps utilisés dans l’exercice</legend>
+        {ALL_TENSES.map((tense) => (
+          <label key={tense}>
+            <input
+              type="checkbox"
+              checked={selected.includes(tense)}
+              // At least one tense is needed to build the exercise.
+              disabled={selected.length === 1 && selected.includes(tense)}
+              onChange={() => toggle(tense)}
+            />
+            {tense}
+          </label>
+        ))}
+      </fieldset>
+    </details>
   )
 }
 

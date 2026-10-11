@@ -22,9 +22,18 @@ h1 {
   margin: 0 0 4px;
 }
 
-header p {
+h2 {
+  margin: 0 0 4px;
+  font-size: 1.4em;
+}
+
+.sheet p {
   margin: 0 0 16px;
   color: var(--muted);
+}
+
+.screen-hidden {
+  display: none;
 }
 
 .actions {
@@ -113,14 +122,25 @@ td.verb {
 }
 
 @media print {
-  .actions,
   .screen-only {
     display: none;
   }
 
-  header p.print-only {
+  .screen-hidden {
     display: block;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  .sheet p.print-only {
     color: var(--text);
+  }
+
+  /* One exercise per page */
+  .sheet + .sheet {
+    break-before: page;
   }
 
   main {
