@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { generateExercise } from './application/services/ExerciseGenerator.ts'
+import { ALL_TENSES, generateExercise } from './application/services/ExerciseGenerator.ts'
+import type { Tenses } from './domain/models/Tenses.ts'
+import TenseSelector from './TenseSelector.tsx'
 
 type Mode = 'retrouver' | 'conjuguer'
 
@@ -10,12 +12,18 @@ const INSTRUCTIONS: Record<Mode, string> = {
 
 function App() {
   const [mode, setMode] = useState<Mode>('retrouver')
-  const [rows, setRows] = useState(generateExercise)
+  const [tenses, setTenses] = useState<Tenses[]>(ALL_TENSES)
+  const [rows, setRows] = useState(() => generateExercise(tenses))
 
   const switchMode = (next: Mode) => {
     if (next === mode) return
     setMode(next)
-    setRows(generateExercise())
+    setRows(generateExercise(tenses))
+  }
+
+  const changeTenses = (next: Tenses[]) => {
+    setTenses(next)
+    setRows(generateExercise(next))
   }
 
   const showIfConjuguer = (content: string) => (mode === 'conjuguer' ? content : null)
@@ -33,8 +41,9 @@ function App() {
           </button>
         </div>
         <p>{INSTRUCTIONS[mode]}</p>
+        <TenseSelector selected={tenses} onChange={changeTenses} />
         <div className="actions">
-          <button onClick={() => setRows(generateExercise())}>Nouvelle fiche</button>
+          <button onClick={() => setRows(generateExercise(tenses))}>Nouvelle fiche</button>
           <button onClick={() => window.print()}>Imprimer</button>
         </div>
       </header>

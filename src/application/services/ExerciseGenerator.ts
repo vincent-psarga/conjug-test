@@ -28,7 +28,7 @@ const CONJUGATORS: { [Tense in Tenses]: IConjugator<Tense> } = {
 };
 
 const PRONOUNS = Object.values(Pronouns);
-const TENSES = Object.values(Tenses);
+export const ALL_TENSES = Object.values(Tenses);
 
 function pick<T>(items: readonly T[]): T {
     return items[Math.floor(Math.random() * items.length)];
@@ -59,10 +59,10 @@ export function pickVerbs(): Verb[] {
     ];
 }
 
-export function generateExercise(): ExerciseRow[] {
+export function generateExercise(tenses: readonly Tenses[] = ALL_TENSES): ExerciseRow[] {
     return shuffle(pickVerbs()).map((verb) => {
         const pronoun = pick(PRONOUNS);
-        const tense = pick(TENSES);
+        const tense = pick(tenses);
         return {verb, pronoun, tense, form: conjugate(verb, pronoun, tense)};
     });
 }

@@ -45,6 +45,51 @@ button {
   cursor: pointer;
 }
 
+.tense-selector {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.tense-selector summary {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tense-selector fieldset {
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+  box-sizing: border-box;
+  margin: 4px 0 0;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+}
+
+.tense-selector legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.tense-selector label {
+  display: flex;
+  gap: 8px;
+  padding: 4px 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.print-only {
+  display: none;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -68,8 +113,14 @@ td.verb {
 }
 
 @media print {
-  .actions {
+  .actions,
+  .screen-only {
     display: none;
+  }
+
+  header p.print-only {
+    display: block;
+    color: var(--text);
   }
 
   main {
