@@ -7,7 +7,7 @@ type Mode = 'retrouver' | 'conjuguer'
 
 const INSTRUCTIONS: Record<Mode, string> = {
   retrouver: 'Retrouve le pronom, l’infinitif et le temps de chaque verbe conjugué.',
-  conjuguer: 'Conjugue chaque verbe avec le pronom et au temps indiqués.',
+  conjuguer: 'Conjugue chaque verbe avec le pronom et au temps indiqué.',
 }
 
 function App() {
