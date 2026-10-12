@@ -3,6 +3,7 @@
   --muted: #555;
   --border: #999;
   --bg: #fff;
+  --solution: #1a7f37;
   font:
     16px/1.4 system-ui,
     "Segoe UI",
@@ -128,6 +129,10 @@ td {
 th {
   text-align: left;
   background: #f0f0f0;
+}
+
+.solution {
+  color: var(--solution);
 }
 
 td.verb {

@@ -7,12 +7,20 @@ type Props = {
   rows: ExerciseRow[];
   tenses: Tenses[];
   hidden: boolean;
+  showSolutions: boolean;
 };
 
 // One printable page. `hidden` only applies on screen: every sheet is printed.
-function ExerciseSheet({ mode, rows, tenses, hidden }: Props) {
-  const showIfConjuguer = (content: string) =>
-    mode === "conjuguer" ? content : null;
+function ExerciseSheet({ mode, rows, tenses, hidden, showSolutions }: Props) {
+  // A cell is either given to the student, or left for them to fill in.
+  // The expected answer can be shown on screen, but is never printed.
+  const cell = (content: string, given: boolean) => {
+    if (given) return content;
+    return showSolutions ? (
+      <span className="solution screen-only">{content}</span>
+    ) : null;
+  };
+  const conjuguer = mode === "conjuguer";
 
   return (
     <section className={hidden ? "sheet screen-hidden" : "sheet"}>
@@ -33,10 +41,10 @@ function ExerciseSheet({ mode, rows, tenses, hidden }: Props) {
           {/* Verbs repeat when only auxiliaries are selected: key by position. */}
           {rows.map((row, i) => (
             <tr key={i}>
-              <td>{showIfConjuguer(row.pronoun)}</td>
-              <td>{showIfConjuguer(row.verb.infinitive)}</td>
-              <td className="verb">{mode === "retrouver" ? row.form : null}</td>
-              <td>{showIfConjuguer(row.tense)}</td>
+              <td>{cell(row.pronoun, conjuguer)}</td>
+              <td>{cell(row.verb.infinitive, conjuguer)}</td>
+              <td className="verb">{cell(row.form, !conjuguer)}</td>
+              <td>{cell(row.tense, conjuguer)}</td>
             </tr>
           ))}
         </tbody>

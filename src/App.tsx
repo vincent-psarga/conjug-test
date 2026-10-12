@@ -25,6 +25,7 @@ function App() {
   const [mode, setMode] = useState<Mode>("retrouver");
   const [tenses, setTenses] = useState<Tenses[]>(DEFAULT_TENSES);
   const [groups, setGroups] = useState<VerbGroups[]>(ALL_GROUPS);
+  const [showSolutions, setShowSolutions] = useState(false);
   const [sheets, setSheets] = useState(() => generateSheets(tenses, groups));
 
   const changeTenses = (next: Tenses[]) => {
@@ -74,6 +75,12 @@ function App() {
             Nouvelle fiche
           </button>
           <button onClick={() => window.print()}>Imprimer</button>
+          <button
+            aria-pressed={showSolutions}
+            onClick={() => setShowSolutions(!showSolutions)}
+          >
+            Solutions
+          </button>
         </div>
       </header>
 
@@ -84,6 +91,7 @@ function App() {
           rows={sheets[m]}
           tenses={tenses}
           hidden={m !== mode}
+          showSolutions={showSolutions}
         />
       ))}
     </main>
