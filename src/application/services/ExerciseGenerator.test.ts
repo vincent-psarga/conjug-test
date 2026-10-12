@@ -11,9 +11,11 @@ import {
   THIRD_GROUP_VERBS,
 } from "../../domain/models/verbs/index.ts";
 import {
+  ALL_GROUPS,
   ALL_TENSES,
   DEFAULT_TENSES,
   conjugate,
+  countRowsPerGroup,
   distributeEvenly,
   generateExercise,
   pickVerbs,
@@ -57,26 +59,94 @@ describe("conjugate", () => {
   });
 });
 
+describe("countRowsPerGroup", () => {
+  const { auxiliaries, first, second, third } = VerbGroups;
+
+  it.each([
+    // auxiliaries alone fill every row
+    [[auxiliaries], { [auxiliaries]: 20 }],
+    // otherwise être and avoir appear once each
+    [ALL_GROUPS, { [auxiliaries]: 2, [first]: 6, [second]: 6, [third]: 6 }],
+    [[auxiliaries, first], { [auxiliaries]: 2, [first]: 18 }],
+    [[auxiliaries, first, third], { [auxiliaries]: 2, [first]: 9, [third]: 9 }],
+    // extra rows go to the 3rd group, then the 2nd
+    [[first, second, third], { [first]: 6, [second]: 7, [third]: 7 }],
+    [[first, third], { [first]: 10, [third]: 10 }],
+    [[first], { [first]: 20 }],
+  ])("splits rows for %j", (groups, expected) => {
+    expect(Object.fromEntries(countRowsPerGroup(groups))).toEqual(expected);
+  });
+
+  it("gives the extra row to the 3rd group first", () => {
+    expect(Object.fromEntries(countRowsPerGroup([first, third], 21))).toEqual({
+      [first]: 10,
+      [third]: 11,
+    });
+  });
+
+  it("gives the extra row to the 2nd group when the 3rd isn't selected", () => {
+    expect(Object.fromEntries(countRowsPerGroup([first, second], 21))).toEqual({
+      [first]: 10,
+      [second]: 11,
+    });
+  });
+});
+
 describe("pickVerbs", () => {
-  it("always picks être, avoir and aller, then 5 + 5 + 7 verbs of each group", () => {
+  const groupsOf = (verbs: { group: VerbGroups }[]) =>
+    Object.fromEntries(countBy(verbs.map((verb) => verb.group)));
+
+  it("picks être and avoir once, aller, and 6 verbs of each other group by default", () => {
     for (let run = 0; run < RUNS; run++) {
       const verbs = pickVerbs();
 
       expect(verbs).toHaveLength(20);
       expect(verbs).toEqual(expect.arrayContaining([Etre, Avoir, Aller]));
-      const groups = countBy(verbs.map((verb) => verb.group));
-      expect(groups.get(VerbGroups.auxiliaries)).toBe(2);
-      expect(groups.get(VerbGroups.first)).toBe(5);
-      expect(groups.get(VerbGroups.second)).toBe(5);
-      // aller + 7 others
-      expect(groups.get(VerbGroups.third)).toBe(8);
+      expect(groupsOf(verbs)).toEqual({
+        [VerbGroups.auxiliaries]: 2,
+        [VerbGroups.first]: 6,
+        [VerbGroups.second]: 6,
+        [VerbGroups.third]: 6,
+      });
     }
   });
 
-  it("never picks the same verb twice", () => {
-    for (let run = 0; run < RUNS; run++) {
-      expect(new Set(pickVerbs()).size).toBe(20);
+  it("never picks the same verb twice when other groups are selected", () => {
+    for (const groups of [
+      ALL_GROUPS,
+      [VerbGroups.second],
+      [VerbGroups.third],
+    ]) {
+      for (let run = 0; run < RUNS; run++) {
+        expect(new Set(pickVerbs(groups)).size).toBe(20);
+      }
     }
+  });
+
+  it("only picks verbs of the selected groups", () => {
+    const verbs = pickVerbs([VerbGroups.first, VerbGroups.second]);
+
+    expect(groupsOf(verbs)).toEqual({
+      [VerbGroups.first]: 10,
+      [VerbGroups.second]: 10,
+    });
+  });
+
+  it("always includes aller with the 3rd group", () => {
+    for (let run = 0; run < RUNS; run++) {
+      expect(pickVerbs([VerbGroups.first, VerbGroups.third])).toContain(Aller);
+    }
+  });
+
+  it("picks être and avoir 10 times each when only auxiliaries are selected", () => {
+    const verbs = pickVerbs([VerbGroups.auxiliaries]);
+
+    expect(countBy(verbs)).toEqual(
+      new Map([
+        [Etre, 10],
+        [Avoir, 10],
+      ]),
+    );
   });
 });
 
@@ -133,6 +203,22 @@ describe("generateExercise", () => {
 
       expect(counts.size).toBe(6);
       expect([...counts.values()].sort()).toEqual([3, 3, 3, 3, 4, 4]);
+    }
+  });
+
+  it("only uses verbs of the selected groups", () => {
+    const rows = generateExercise(DEFAULT_TENSES, [VerbGroups.second]);
+
+    expect(rows.every((row) => row.verb.group === VerbGroups.second)).toBe(
+      true,
+    );
+  });
+
+  it("avoids repeated rows when only auxiliaries are selected", () => {
+    for (let run = 0; run < RUNS; run++) {
+      const rows = generateExercise(DEFAULT_TENSES, [VerbGroups.auxiliaries]);
+
+      expect(new Set(rows.map((row) => row.form)).size).toBe(20);
     }
   });
 

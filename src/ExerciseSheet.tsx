@@ -30,8 +30,9 @@ function ExerciseSheet({ mode, rows, tenses, hidden }: Props) {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row) => (
-            <tr key={row.verb.infinitive}>
+          {/* Verbs repeat when only auxiliaries are selected: key by position. */}
+          {rows.map((row, i) => (
+            <tr key={i}>
               <td>{showIfConjuguer(row.pronoun)}</td>
               <td>{showIfConjuguer(row.verb.infinitive)}</td>
               <td className="verb">{mode === "retrouver" ? row.form : null}</td>

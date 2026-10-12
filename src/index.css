@@ -58,20 +58,29 @@ button {
   cursor: pointer;
 }
 
-.tense-selector {
-  position: relative;
-  display: inline-block;
+.filters {
+  display: flex;
+  gap: 8px;
   margin-bottom: 16px;
 }
 
-.tense-selector summary {
+.multi-select {
+  position: relative;
+  /* Shrink when both don't fit on one line, instead of wrapping. */
+  min-width: 0;
+}
+
+.multi-select summary {
   padding: 6px 14px;
   border: 1px solid var(--border);
   border-radius: 4px;
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.tense-selector fieldset {
+.multi-select fieldset {
   position: absolute;
   z-index: 1;
   min-width: 100%;
@@ -83,7 +92,7 @@ button {
   background: var(--bg);
 }
 
-.tense-selector legend {
+.multi-select legend {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -91,7 +100,7 @@ button {
   clip-path: inset(50%);
 }
 
-.tense-selector label {
+.multi-select label {
   display: flex;
   gap: 8px;
   padding: 4px 0;
