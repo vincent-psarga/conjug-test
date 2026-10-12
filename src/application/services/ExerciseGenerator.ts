@@ -15,6 +15,7 @@ import { PresentConjugator } from "./PresentConjugator.ts";
 import { ImparfaitConjugator } from "./ImparfaitConjugator.ts";
 import { FuturConjugator } from "./FuturConjugator.ts";
 import { PasseSimpleConjugator } from "./PasseSimpleConjugator.ts";
+import { ConditionnelPresentConjugator } from "./ConditionnelPresentConjugator.ts";
 
 export type ExerciseRow = {
   verb: Verb;
@@ -28,6 +29,7 @@ const CONJUGATORS: { [Tense in Tenses]: IConjugator<Tense> } = {
   [Tenses.Imparfait]: new ImparfaitConjugator(),
   [Tenses.Futur]: new FuturConjugator(),
   [Tenses.PasseSimple]: new PasseSimpleConjugator(),
+  [Tenses.ConditionnelPresent]: new ConditionnelPresentConjugator(),
 };
 
 const PRONOUNS = Object.values(Pronouns);

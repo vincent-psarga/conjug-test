@@ -7,7 +7,8 @@ import {
   StemAndEndingsConjugator,
 } from "./StemAndEndingsConjugator.ts";
 
-const ENDINGS: Endings = {
+// Also used by the conditionnel présent.
+export const IMPARFAIT_ENDINGS: Endings = {
   [Pronouns.je]: "ais",
   [Pronouns.tu]: "ais",
   [Pronouns.il]: "ait",
@@ -30,6 +31,6 @@ export class ImparfaitConjugator extends StemAndEndingsConjugator<Tenses.Imparfa
   }
 
   protected endings(): Endings {
-    return ENDINGS;
+    return IMPARFAIT_ENDINGS;
   }
 }

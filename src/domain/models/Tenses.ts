@@ -3,4 +3,5 @@ export enum Tenses {
   Imparfait = "imparfait",
   Futur = "futur simple",
   PasseSimple = "passé simple",
+  ConditionnelPresent = "conditionnel présent",
 }

@@ -36,6 +36,7 @@ describe("conjugate", () => {
     [Tenses.Imparfait, "allaient"],
     [Tenses.Futur, "iront"],
     [Tenses.PasseSimple, "allèrent"],
+    [Tenses.ConditionnelPresent, "iraient"],
   ])("uses the %s conjugator", (tense, expected) => {
     expect(conjugate(Aller, Pronouns.ils, tense)).toBe(expected);
   });
