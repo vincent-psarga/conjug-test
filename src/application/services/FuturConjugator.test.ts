@@ -43,7 +43,7 @@ describe("FuturConjugator", () => {
   });
 
   it("throws for an auxiliary without a futur stem", () => {
-    const verb: Verb = { infinitive: "être", group: VerbGroups.auxilliaries };
+    const verb: Verb = { infinitive: "être", group: VerbGroups.auxiliaries };
 
     expect(() => new FuturConjugator().conjugate(verb, Pronouns.je)).toThrow();
   });

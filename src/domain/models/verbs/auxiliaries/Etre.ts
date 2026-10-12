@@ -5,7 +5,7 @@ import { Pronouns } from "../../Pronouns.ts";
 
 export const Etre: Verb = {
   infinitive: "être",
-  group: VerbGroups.auxilliaries,
+  group: VerbGroups.auxiliaries,
   stems: {
     [Tenses.Imparfait]: "ét",
     [Tenses.Futur]: "ser",

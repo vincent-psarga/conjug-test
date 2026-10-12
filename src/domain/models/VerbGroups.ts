@@ -1,5 +1,5 @@
 export enum VerbGroups {
-  auxilliaries = "auxiliaires",
+  auxiliaries = "auxiliaires",
   first = "premier",
   second = "deuxième",
   third = "troisième",

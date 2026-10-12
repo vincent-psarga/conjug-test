@@ -65,7 +65,7 @@ describe("pickVerbs", () => {
       expect(verbs).toHaveLength(20);
       expect(verbs).toEqual(expect.arrayContaining([Etre, Avoir, Aller]));
       const groups = countBy(verbs.map((verb) => verb.group));
-      expect(groups.get(VerbGroups.auxilliaries)).toBe(2);
+      expect(groups.get(VerbGroups.auxiliaries)).toBe(2);
       expect(groups.get(VerbGroups.first)).toBe(5);
       expect(groups.get(VerbGroups.second)).toBe(5);
       // aller + 7 others
