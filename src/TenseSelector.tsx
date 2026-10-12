@@ -1,43 +1,43 @@
-import { useEffect, useRef } from 'react'
-import { ALL_TENSES } from './application/services/ExerciseGenerator.ts'
-import type { Tenses } from './domain/models/Tenses.ts'
+import { useEffect, useRef } from "react";
+import { ALL_TENSES } from "./application/services/ExerciseGenerator.ts";
+import type { Tenses } from "./domain/models/Tenses.ts";
 
 type Props = {
-  selected: Tenses[]
-  onChange: (tenses: Tenses[]) => void
-}
+  selected: Tenses[];
+  onChange: (tenses: Tenses[]) => void;
+};
 
 function TenseSelector({ selected, onChange }: Props) {
-  const dropdown = useRef<HTMLDetailsElement>(null)
+  const dropdown = useRef<HTMLDetailsElement>(null);
 
   // Close like a regular dropdown: on a click outside it, or on Escape.
   useEffect(() => {
-    const close = () => dropdown.current?.removeAttribute('open')
+    const close = () => dropdown.current?.removeAttribute("open");
     const onPointerDown = (event: PointerEvent) => {
-      if (!dropdown.current?.contains(event.target as Node)) close()
-    }
+      if (!dropdown.current?.contains(event.target as Node)) close();
+    };
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && dropdown.current?.open) {
-        close()
-        dropdown.current.querySelector('summary')?.focus()
+      if (event.key === "Escape" && dropdown.current?.open) {
+        close();
+        dropdown.current.querySelector("summary")?.focus();
       }
-    }
-    document.addEventListener('pointerdown', onPointerDown)
-    document.addEventListener('keydown', onKeyDown)
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
     return () => {
-      document.removeEventListener('pointerdown', onPointerDown)
-      document.removeEventListener('keydown', onKeyDown)
-    }
-  }, [])
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, []);
 
   const toggle = (tense: Tenses) => {
     const next = selected.includes(tense)
       ? selected.filter((t) => t !== tense)
-      : ALL_TENSES.filter((t) => t === tense || selected.includes(t))
-    onChange(next)
-  }
+      : ALL_TENSES.filter((t) => t === tense || selected.includes(t));
+    onChange(next);
+  };
 
-  const summary = selected.join(', ')
+  const summary = selected.join(", ");
 
   return (
     <details ref={dropdown} className="tense-selector">
@@ -58,7 +58,7 @@ function TenseSelector({ selected, onChange }: Props) {
         ))}
       </fieldset>
     </details>
-  )
+  );
 }
 
-export default TenseSelector
+export default TenseSelector;

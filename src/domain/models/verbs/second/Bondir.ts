@@ -1,7 +1,7 @@
-import type {Verb} from "../../Verb.ts";
-import {VerbGroups} from "../../VerbGroups.ts";
+import type { Verb } from "../../Verb.ts";
+import { VerbGroups } from "../../VerbGroups.ts";
 
 export const Bondir: Verb = {
-    infinitive: "bondir",
-    group: VerbGroups.second,
+  infinitive: "bondir",
+  group: VerbGroups.second,
 };

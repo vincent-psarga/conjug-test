@@ -1,7 +1,7 @@
-import type {Verb} from "../../Verb.ts";
-import {VerbGroups} from "../../VerbGroups.ts";
+import type { Verb } from "../../Verb.ts";
+import { VerbGroups } from "../../VerbGroups.ts";
 
 export const Oublier: Verb = {
-    infinitive: "oublier",
-    group: VerbGroups.first,
+  infinitive: "oublier",
+  group: VerbGroups.first,
 };

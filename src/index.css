@@ -3,7 +3,11 @@
   --muted: #555;
   --border: #999;
   --bg: #fff;
-  font: 16px/1.4 system-ui, 'Segoe UI', Roboto, sans-serif;
+  font:
+    16px/1.4 system-ui,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   color: var(--text);
   background: var(--bg);
 }
@@ -42,7 +46,7 @@ h2 {
   margin-bottom: 16px;
 }
 
-button[aria-pressed='true'] {
+button[aria-pressed="true"] {
   background: var(--text);
   color: var(--bg);
   border-color: var(--text);

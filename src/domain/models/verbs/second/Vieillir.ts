@@ -1,7 +1,7 @@
-import type {Verb} from "../../Verb.ts";
-import {VerbGroups} from "../../VerbGroups.ts";
+import type { Verb } from "../../Verb.ts";
+import { VerbGroups } from "../../VerbGroups.ts";
 
 export const Vieillir: Verb = {
-    infinitive: "vieillir",
-    group: VerbGroups.second,
+  infinitive: "vieillir",
+  group: VerbGroups.second,
 };
